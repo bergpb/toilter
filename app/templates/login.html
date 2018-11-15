@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--action em branco envio para a mesma tela em que estarei-->
+<div class="row">
+  <div class="col-md-4 offset-md-4">
+    <h3 class="text-center mb-4">Login</h3>
+    <form novalidate class="form-horizontal" action="" method="POST">
+      {{ form.csrf_token }}
+      <div class="form-group">
+        <!--<label name="email" >Email</label>-->
+        <!--inserindo atributos dentro do wtforms-->
+        {{ form.username(class="form-control", placeholder="Email") }}
+        {% if form.errors.username %}
+          <ul class="list-group">
+            {% for error in form.errors.username %}
+              <li class="list-group-item list-group-item-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <!--<label name="password" >Password</label>-->
+        {{ form.password(class="form-control", placeholder="Password") }}
+        {% if form.errors.password %}
+          <ul class="list-group">
+            {% for error in form.errors.password %}
+              <li class="list-group-item list-group-item-danger">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      <div class="form-check mb-3">
+        {{ form.remember_me(class="form-check-input") }}
+        <label name="remember_me" class="form-check-label">Remember Me</label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
