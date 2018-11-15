@@ -1,7 +1,8 @@
 # importando app do modulo app
 from flask import render_template
-from app import app
+from app import app, db
 
+from app.models.tables import User
 from app.models.forms import LoginForm
 
 @app.route("/index")
@@ -21,3 +22,14 @@ def login():
         
     return render_template('login.html',
                            form=form_login)
+                           
+
+@app.route("/teste/<info>")
+@app.route("/teste", defaults={"info": None})
+def teste(info):
+    user = User.query.filter_by(username="bergpb").first()
+    print(user.email)
+    print(user.password)
+    return "ok"
+    
+    

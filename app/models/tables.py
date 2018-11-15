@@ -14,7 +14,7 @@ class User(db.Model):
     
     # contrutor,  obrigatoriamente quando um novo usuario for criado
     # deve ter todos esses atributos
-    def __init__ (self, username, password, username, email):
+    def __init__ (self, username, password, name, email):
         self.username = username
         self.password = password
         self.name = name
@@ -31,7 +31,7 @@ class Post(db.Model):
     # formato texto para que as tags html nao sejam contadas (caso as mesmas forem inseridas)
     content = db.Column(db.Text)
     # referencia o id de um usuario
-    user_id = db.Column(db.Integer, db,ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     # quando pesquisar o post,  deve trazer a info do usuario atraves do user_id
     user = db.relationship('User', foreign_keys=user_id)
     
@@ -47,7 +47,7 @@ class Post(db.Model):
         return "<Post %r>" % self.id
 
 
-class Follow(db.Model)
+class Follow(db.Model):
     __tablename__ = "follow"
     
     id = db.Column(db.Integer, primary_key=True)

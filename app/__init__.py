@@ -15,4 +15,5 @@ manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
 # python3 import completo do modulo, nao pode ser relativo
+from app.models import tables, forms
 from app.controllers import default
