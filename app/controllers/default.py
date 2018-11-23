@@ -1,4 +1,3 @@
-# importando app do modulo app
 from flask import render_template, flash, redirect, url_for
 from flask_login import login_user, logout_user
 from app import app, db, login
@@ -29,9 +28,6 @@ def login():
             return redirect(url_for("index"))
         else:
             flash("Invalid login.")
-    else:
-        print(form_login.errors)
-        
     return render_template('login.html',
                            form=form_login)
          
